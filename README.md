@@ -24,7 +24,7 @@ pip install -r requirements.txt
 ### Dataset
 The project utilizes the [Corn Leaf Disease](https://huggingface.co/datasets/Prachi1234/corn-leaf-disease) Dataset from Hugging Face. This dataset includes images of corn plant leaves categorized by various diseases and healthy conditions.
 #### Description
-**Source:** [Hugging Face - Corn Leaf Disease Image Dataset](https://huggingface.co/datasets/Prachi1234/corn-leaf-disease)\ 
+**Source:** [Hugging Face - Corn Leaf Disease Image Dataset](https://huggingface.co/datasets/Prachi1234/corn-leaf-disease)\
 Content: Contains images of corn leaves with labels indicating different types of diseases and healthy states.
 Format: Images are organized in folders by disease categories. 
 ### Model
