@@ -62,26 +62,26 @@ const AboutPage = () => {
             <div className="flex justify-center flex-wrap">
                 <ProfileCard 
                     name="Viraj Prajapati" 
-                    role="DAIICTians"
+                    role="DAIICTian"
                     contact="+91 9510470074"
                     imgSrc={viraj.src}
                 />
                 <ProfileCard 
                     name="Darshan Gami" 
-                    role="DAIICTians"
+                    role="DAIICTian"
                     contact="+91 7990405434"
                     imgSrc={darshan.src}
                 />
                 <ProfileCard 
                     name="Parth Borad" 
-                    role="DAIICTians"
+                    role="DAIICTian"
                     contact="+91 7573074175"
                     imgSrc={parth.src}
                 />
                 <ProfileCard 
                     name="Krishn Navadiya" 
                     contact="+91 9824659110"
-                    role="DAIICTians"
+                    role="DAIICTian"
                     imgSrc={krishn.src}
                 />
             </div>

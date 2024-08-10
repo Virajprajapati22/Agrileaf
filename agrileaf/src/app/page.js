@@ -8,14 +8,6 @@ export default function Home() {
   return (
     <>
       <HomePageComponent />
-      <HomePageComponent />
-
-      <HomePageComponent />
-
-      <HomePageComponent />
-
-      <HomePageComponent />
-
     </>
   );
 }
