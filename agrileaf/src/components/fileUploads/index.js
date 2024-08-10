@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 
-
 let curIdx = 0;
 
 const FileUploader = () => {
     const [images, setImages] = useState(Array(5).fill(null)); // State for 5 image slots
+    const [selectedCrop, setSelectedCrop] = useState(''); // State for selected crop
+    const [cropArea, setCropArea] = useState(''); // State for crop area
+    const [detectedDiseases, setDetectedDiseases] = useState(null); // State for detected diseases and solutions
+    const [loading, setLoading] = useState(false); // State to indicate loading status
 
     const handleFileChange = (event, index) => {
         const file = event.target.files[0];
@@ -17,8 +20,38 @@ const FileUploader = () => {
         }
     };
 
-    console.log(images, "Images");
-    
+    const handleFindDisease = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            // Prepare data to send to the backend
+            const formData = new FormData();
+            formData.append('cropType', selectedCrop);
+            formData.append('cropArea', cropArea);
+            images.forEach((image, index) => {
+                if (image) {
+                    formData.append(`image${index + 1}`, image);
+                }
+            });
+
+            // Send request to backend
+            const response = await fetch('/api/detect-disease', {
+                method: 'POST',
+                body: formData,
+            });
+
+            // Get the response data
+            const result = await response.json();
+
+            // Assuming the result contains a list of detected diseases and solutions
+            setDetectedDiseases(result);
+        } catch (error) {
+            console.error('Error detecting disease:', error);
+            setDetectedDiseases({ error: 'An error occurred while detecting disease.' });
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="flex flex-col items-center w-full">
@@ -50,6 +83,68 @@ const FileUploader = () => {
                     </div>
                 ))}
             </div>
+
+            {/* Crop Selection Dropdown */}
+            <div className="w-full max-w-5xl my-4">
+                <label htmlFor="crop-select" className="block mb-2 text-sm font-medium text-gray-700">Select Crop Type</label>
+                <select
+                    id="crop-select"
+                    value={selectedCrop}
+                    onChange={(e) => setSelectedCrop(e.target.value)}
+                    className="block w-full p-2.5 text-gray-700 border border-green-900 rounded-lg bg-white"
+                >
+                    <option value="" disabled>Select a crop</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="corn">Corn</option>
+                    <option value="rice">Rice</option>
+                    <option value="soybean">Soybean</option>
+                    {/* Add more crops as needed */}
+                </select>
+            </div>
+
+            {/* Crop Area Input */}
+            <div className="w-full max-w-5xl my-4">
+                <label htmlFor="crop-area" className="block mb-2 text-sm font-medium text-gray-700">Enter Area Occupied by the Crop (in acres/hectares)</label>
+                <input
+                    id="crop-area"
+                    type="text"
+                    value={cropArea}
+                    onChange={(e) => setCropArea(e.target.value)}
+                    placeholder="Enter area"
+                    className="block w-full p-2.5 text-gray-700 border border-green-900 rounded-lg bg-white"
+                />
+            </div>
+
+            {/* Find Disease Button */}
+            <button
+                onClick={handleFindDisease}
+                className="bg-green-700 text-gray-100 py-3 px-6 rounded-lg mt-8 hover:bg-green-800 transition duration-300 text-lg font-semibold"
+                // disabled={loading || !selectedCrop || !cropArea} // Disable button if loading or fields are empty
+            >
+                {loading ? 'Detecting...' : 'Detect Disease'}
+            </button>
+
+            {/* Display Detected Diseases and Solutions */}
+            {detectedDiseases && (
+                <div className="w-full max-w-5xl mt-8 p-4 bg-white border-2 border-green-900 rounded-lg">
+                    {detectedDiseases?.error ? (
+                        <p className="text-red-500">{detectedDiseases.error}</p>
+                    ) : (
+                        <div>
+                            <h3 className="text-xl font-semibold mb-4">Detected Diseases for {selectedCrop}</h3>
+                            <ul className="space-y-4">
+                                {detectedDiseases?.map((disease, index) => (
+                                    <li key={index} className="p-4 border-2 border-green-900 rounded-lg">
+                                        <h4 className="text-lg font-medium text-green-700">{disease.name}</h4>
+                                        <p className="text-sm text-gray-700 mt-2">{disease.description}</p>
+                                        <p className="text-sm text-gray-700 mt-2"><strong>Solution:</strong> {disease.solution}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
     );
 };

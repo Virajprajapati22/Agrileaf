@@ -12,7 +12,47 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      fontFamily: {
+        'space-grotesk': ['"Space Grotesk"', 'sans-serif'],
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.space-grotesk-light': {
+          fontFamily: '"Space Grotesk", sans-serif',
+          fontWeight: '300',
+          fontStyle: 'normal',
+          fontOpticalSizing: 'auto',
+        },
+        '.space-grotesk-regular': {
+          fontFamily: '"Space Grotesk", sans-serif',
+          fontWeight: '400',
+          fontStyle: 'normal',
+          fontOpticalSizing: 'auto',
+        },
+        '.space-grotesk-medium': {
+          fontFamily: '"Space Grotesk", sans-serif',
+          fontWeight: '500',
+          fontStyle: 'normal',
+          fontOpticalSizing: 'auto',
+        },
+        '.space-grotesk-semibold': {
+          fontFamily: '"Space Grotesk", sans-serif',
+          fontWeight: '600',
+          fontStyle: 'normal',
+          fontOpticalSizing: 'auto',
+        },
+        '.space-grotesk-bold': {
+          fontFamily: '"Space Grotesk", sans-serif',
+          fontWeight: '700',
+          fontStyle: 'normal',
+          fontOpticalSizing: 'auto',
+        },
+      };
+
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    },
+  ],
 };
