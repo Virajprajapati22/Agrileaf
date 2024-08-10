@@ -24,14 +24,14 @@ pip install -r requirements.txt
 ### Dataset
 The project utilizes the [Corn Leaf Disease](https://huggingface.co/datasets/Prachi1234/corn-leaf-disease) Dataset from Hugging Face. This dataset includes images of corn plant leaves categorized by various diseases and healthy conditions.
 #### Description
-Source: [Hugging Face - Corn Leaf Disease](https://huggingface.co/datasets/Prachi1234/corn-leaf-disease) Image Dataset
-Content: Contains images of corn leaves with labels indicating different types of diseases and healthy states.
-Format: Images are organized in folders by disease categories.
+Source: [Hugging Face - Corn Leaf Disease Image Dataset](https://huggingface.co/datasets/Prachi1234/corn-leaf-disease) \ 
+Content: Contains images of corn leaves with labels indicating different types of diseases and healthy states. \
+Format: Images are organized in folders by disease categories. \
 ### Model
 For image classification, we use the ResNet50 model pretrained on the ImageNet dataset. ResNet50 is a deep convolutional network known for its effectiveness in various image recognition tasks.
 
 #### Description
 Model: ResNet50 
-Source: [PyTorch Hub - ResNet50](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html)
+Source: [PyTorch Hub - ResNet50](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html) \
 Usage: The pretrained ResNet50 model is used to leverage transfer learning for identifying diseases in plant leaf images.
 
