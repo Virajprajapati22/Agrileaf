@@ -17,7 +17,7 @@ const CropImageUpload = () => {
 
     return (
         <div className="bg-white m-[2em] p-6 border-2 border-green-900 bg-[#e1f8e6] rounded-[16px] shadow-lg">
-            <h2 className="space-grotesk-bold text-xl font-bold text-green-700 mb-4">Upload Crop Images</h2>
+            
             <FileUploader />
             {/* <div className="flex flex-col items-center">
                 <input

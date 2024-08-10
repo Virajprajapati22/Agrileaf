@@ -2,7 +2,8 @@
 
 import ProductHeroSection from '@/components/sections/productHeroSection'
 import React from 'react'
-const Products = () => {
+
+const Solutions = () => {
     return (
         <div>
             <ProductHeroSection />
@@ -10,4 +11,4 @@ const Products = () => {
     )
 }
 
-export default Products
+export default Solutions

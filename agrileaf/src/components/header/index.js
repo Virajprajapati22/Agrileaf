@@ -22,7 +22,7 @@ const Header = () => {
                 </div>
                 <div className="hidden lg:flex lg:gap-x-12">
                     <Link href="/" className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">Home</Link>
-                    <Link href="/products" className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">Products</Link>
+                    <Link href="/solutions" className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">Solutions</Link>
                     <Link href="/aboutus" className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">About Us</Link>
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
