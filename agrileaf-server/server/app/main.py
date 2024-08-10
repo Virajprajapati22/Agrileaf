@@ -3,11 +3,26 @@ from utils import transform_image
 
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from typing import List, Optional
 import torch
 import torchvision.models as models
+import google.generativeai as genai
+import os
+
+genai.configure(api_key=os.environ["AIzaSyBOJXOu5FTf1nm_rwkuH5C2VgXVZFFvNOo"])
+
+model = genai.GenerativeModel('gemini-1.5-flash')
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this to the specific domains you want to allow
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Load required models
 MODEL_PATH = "/Users/viru/Documents/GitHub/Agrileaf/agrileaf-server/model/resnet50_corn_disease.pth"

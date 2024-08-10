@@ -12,31 +12,29 @@ const FileUploader = () => {
     const handleFileChange = (event, index) => {
         const file = event.target.files[0];
         if (file) {
-            const url = URL.createObjectURL(file); // Create a URL for the image
             const updatedImages = [...images];
-            updatedImages[curIdx] = url; // Update the specific index with the new image URL
+            updatedImages[curIdx] = file; // Store the file itself instead of URL
             setImages(updatedImages); // Update the state with the new images array
             curIdx++;
         }
     };
 
-    let url = `${process.env.REACT_BACKEND_API}detect-disease`
-    
     const handleFindDisease = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const formData = new FormData();
+            const formData = new FormData(); // Create a FormData object to handle file uploads
             formData.append('cropType', selectedCrop);
             formData.append('cropArea', cropArea);
+
             images.forEach((image, index) => {
                 if (image) {
-                    formData.append(`image${index + 1}`, image);
+                    formData.append('files', image); // Append each file to the FormData
                 }
             });
 
-            const response = await fetch(url, {
+            const response = await fetch('http://localhost:8000/detect-disease/', {
                 method: 'POST',
                 body: formData,
             });
@@ -46,8 +44,6 @@ const FileUploader = () => {
             }
 
             const result = await response.json();
-            console.log(result, "[RESULT]");
-            
             setDetectedDiseases(result);
 
         } catch (error) {
@@ -76,10 +72,10 @@ const FileUploader = () => {
 
             {/* Image Cards */}
             <div className="grid grid-cols-2 m-2 sm:grid-cols-3 gap-4 w-full max-w-5xl">
-                {images.map((imageUrl, index) => (
+                {images.map((image, index) => (
                     <div key={index} className="relative h-[10em] border-2 border-green-900 border-dotted rounded-lg p-4 flex items-center justify-center bg-white">
-                        {imageUrl ? (
-                            <img src={imageUrl} alt={`Uploaded Image ${index + 1}`} className="w-full h-full object-cover" />
+                        {image ? (
+                            <img src={URL.createObjectURL(image)} alt={`Uploaded Image ${index + 1}`} className="w-full h-full object-cover" />
                         ) : (
                             <label htmlFor={`file-upload-${index}`} className="w-full h-full flex flex-col items-center justify-center">
                                 <p className="text-gray-500">Upload Image {index + 1}</p>
@@ -124,7 +120,7 @@ const FileUploader = () => {
             <button
                 onClick={handleFindDisease}
                 className="bg-green-700 text-gray-100 py-3 px-6 rounded-lg mt-8 hover:bg-green-800 transition duration-300 text-lg font-semibold"
-                // disabled={loading || !selectedCrop || !cropArea} // Disable button if loading or fields are empty
+                disabled={loading || !selectedCrop || !cropArea} // Disable button if loading or fields are empty
             >
                 {loading ? 'Detecting...' : 'Detect Disease'}
             </button>
@@ -138,11 +134,10 @@ const FileUploader = () => {
                         <div>
                             <h3 className="text-xl font-semibold mb-4">Detected Diseases for {selectedCrop}</h3>
                             <ul className="space-y-4">
-                                {detectedDiseases?.map((disease, index) => (
-                                    <li key={index} className="p-4 border-2 border-green-900 rounded-lg">
-                                        <h4 className="text-lg font-medium text-green-700">{disease.name}</h4>
-                                        <p className="text-sm text-gray-700 mt-2">{disease.description}</p>
-                                        <p className="text-sm text-gray-700 mt-2"><strong>Solution:</strong> {disease.solution}</p>
+                                {detectedDiseases?.predictions?.map((disease, index) => (
+                                    <li key={index} className="p-4 border-[1px] border-green-900 rounded-lg">
+                                        <h4 className="text-lg font-medium text-green-700">{disease.prediction}</h4>
+                                        <p className="text-sm text-gray-700 mt-2"><strong>Image {index+1}:</strong> {disease.filename.split(".")[0]}</p>
                                     </li>
                                 ))}
                             </ul>
