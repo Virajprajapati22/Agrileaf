@@ -9,21 +9,21 @@ const HomeMain2Section = () => {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div className="bg-green-50 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-lg font-semibold text-green-900 mb-2">Expertise and Experience</h3>
+                        <h3 className="text-lg font-semibold text-green-900 mb-2">Accurate Disease Detection</h3>
                         <p className="text-green-700">
-                            Our team consists of experts with years of experience in agriculture and technology, ensuring you receive the best solutions.
+                            Our AI-powered system is trained on a Authentic dataset, ensuring high accuracy in detecting plant diseases from images.
                         </p>
                     </div>
                     <div className="bg-green-50 p-6 rounded-lg shadow-lg">
-                        <h3 className="text-lg font-semibold text-green-900 mb-2">Cutting-Edge Technology</h3>
+                        <h3 className="text-lg font-semibold text-green-900 mb-2">User-Friendly Experience</h3>
                         <p className="text-green-700">
-                            We use the latest AI-driven technology to provide accurate disease detection and actionable insights.
+                            Our platform is designed to be easy to use, whether you’re a seasoned farmer or a home gardener. Get started in just a few clicks!
                         </p>
                     </div>
                     <div className="bg-green-50 p-6 rounded-lg shadow-lg">
                         <h3 className="text-lg font-semibold text-green-900 mb-2">Comprehensive Support</h3>
                         <p className="text-green-700">
-                            Our support team is always available to help you with any questions or issues you might encounter.
+                            Have questions or need assistance? Our support team is here to help you every step of the way, from diagnosis to treatment.
                         </p>
                     </div>
                 </div>

@@ -6,8 +6,8 @@ import outputimg from '../../../images/4rh.png';
 
 const HomeMainSection = () => {
     return (
-        <main className="flex-grow border-green-50 rounded-md">
-            <section className="py-16 px-4 sm:px-8 lg:px-16 bg-gray-100 flex-grow m-[2em] border-2 border-green-50 rounded-md">
+        <main className="flex-grow border-green-50 rounded-md ">
+            <section className="py-16 px-4 sm:px-8 lg:px-16 bg-green-50 flex-grow m-[2em] border-2 border-green-50 rounded-md">
                 <h2 className="text-2xl font-bold text-green-900 text-center mb-8">
                     How Our Model Works
                 </h2>

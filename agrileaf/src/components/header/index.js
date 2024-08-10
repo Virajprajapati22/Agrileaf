@@ -1,15 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
-import logo from '../../images/arileaf_logo.svg'
+import logo from '../../images/arileaf_logo.svg';
 
 const Header = () => {
     return (
-        <header className="bg-green-700 m-[2em] border-2 border-green-900 rounded-[16px]">
+        <header className="bg-green-700 m-[2em] border-2 border-green-700 rounded-[16px] sticky top-0 z-50">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <a href="#" className="-m-1.5 p-1.5">
-                        <span className="sr-only space-grotesk-bold">Your Company</span>
-                        <img className="h-12 w-auto" src={logo.src} alt="" />
+                        <img className="h-11 w-auto" src={logo.src} alt="AgriLeaf Logo" />
                     </a>
                 </div>
                 <div className="flex lg:hidden">
