@@ -1,0 +1,5 @@
+.placeholder-custom::placeholder {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; 
+    font-size: 1rem; 
+    color: #6b7280;
+}
