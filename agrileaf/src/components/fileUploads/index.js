@@ -20,11 +20,13 @@ const FileUploader = () => {
         }
     };
 
+    let url = `${process.env.REACT_BACKEND_API}detect-disease`
+    
     const handleFindDisease = async (e) => {
         e.preventDefault();
         setLoading(true);
+
         try {
-            // Prepare data to send to the backend
             const formData = new FormData();
             formData.append('cropType', selectedCrop);
             formData.append('cropArea', cropArea);
@@ -34,17 +36,20 @@ const FileUploader = () => {
                 }
             });
 
-            // Send request to backend
-            const response = await fetch('/api/detect-disease', {
+            const response = await fetch(url, {
                 method: 'POST',
                 body: formData,
             });
 
-            // Get the response data
-            const result = await response.json();
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
 
-            // Assuming the result contains a list of detected diseases and solutions
+            const result = await response.json();
+            console.log(result, "[RESULT]");
+            
             setDetectedDiseases(result);
+
         } catch (error) {
             console.error('Error detecting disease:', error);
             setDetectedDiseases({ error: 'An error occurred while detecting disease.' });
