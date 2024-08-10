@@ -14,7 +14,7 @@ const ProductHeroSection = () => {
                       Our advanced system helps farmers identify and address crop diseases before they become a serious problem. Get real-time insights and recommendations to keep your crops healthy and productive.
                   </p>
                   <div className="mt-6">
-                      <Link href="/products/sol" className="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700">
+                      <Link href="/solutions/sol" className="inline-flex items-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 ">
                           Explore Our Solutions
                       </Link>
                   </div>
