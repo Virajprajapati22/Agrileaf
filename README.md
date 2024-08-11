@@ -34,3 +34,32 @@ For image classification, we use the **ResNet50** model pretrained on the ImageN
 **Source:** [PyTorch Hub - ResNet50](https://pytorch.org/vision/main/models/generated/torchvision.models.resnet50.html)\
 Usage: The pretrained ResNet50 model is used to leverage transfer learning for identifying diseases in plant leaf images.
 
+### **FINAL OUTPUT:**
+
+<img src="./agrileaf/src/images/i1.jpeg" width="800" height="500">
+
+---
+
+<img src="./agrileaf/src/images/i2.jpeg" width="800" height="500">
+
+---
+
+<img src="./agrileaf/src/images/i3.jpeg" width="800" height="500">
+
+---
+
+<img src="./agrileaf/src/images/i4.jpeg" width="800" height="500">
+
+---
+
+<img src="./agrileaf/src/images/i5.jpeg" width="800" height="500">
+
+---
+
+<img src="./agrileaf/src/images/i6.jpeg" width="800" height="500">
+
+---
+
+<img src="./agrileaf/src/images/i7.jpeg" width="800" height="500">
+
+---
