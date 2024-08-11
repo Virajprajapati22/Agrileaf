@@ -8,23 +8,23 @@ import { useRouter } from 'next/navigation';
 const Header = () => {
 
     const router = useRouter();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
 
     useEffect(() => {
         const checkAuth = () => {
             const storedUser = localStorage.getItem('agrileaf-userToken');
-            if (storedUser) {
-                setIsLoggedIn(true);
+            if (!storedUser) {
+                setIsLoggedIn(false);
             }
         };
 
         checkAuth();
-    }, [router]);
+    }, []);
 
     const handleLogout = (e) => {
         e.preventDefault();
         localStorage.clear();
-        
+
         setIsLoggedIn(false);
         router.push('/signup');
     }

@@ -143,8 +143,8 @@ const FileUploader = () => {
                     aria-hidden="true"
                     className="fixed inset-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50"
                 >
-                    <div className="relative p-8 max-w-[80%] max-h-[80%] overflow-y-auto bg-green-50 rounded-lg shadow-lg">
-                        <div className="relative h-[70vh] bg-white rounded-lg shadow-md">
+                    {/* <div className="relative p-8 max-w-[80%] max-h-[80%] overflow-y-auto bg-green-50 rounded-lg shadow-lg"> */}
+                        <div className="relative max-w-[50em] h-[70vh] bg-white rounded-lg shadow-md">
                             <div className="flex items-center justify-between p-4 border-b border-green-900 rounded-t bg-green-200">
                                 <h3 className="text-xl font-semibold text-gray-900">Diseases</h3>
                                 <button
@@ -170,7 +170,7 @@ const FileUploader = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                // </div>
             )}
         </div>
     );
