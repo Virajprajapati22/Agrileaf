@@ -1,10 +1,36 @@
+"use client";
+
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from '../../images/arileaf_logo.svg';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
+
+    const router = useRouter();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const checkAuth = () => {
+            const storedUser = localStorage.getItem('agrileaf-userToken');
+            if (storedUser) {
+                setIsLoggedIn(true);
+            }
+        };
+
+        checkAuth();
+    }, [router]);
+
+    const handleLogout = (e) => {
+        e.preventDefault();
+        localStorage.clear();
+        
+        setIsLoggedIn(false);
+        router.push('/signup');
+    }
+
     return (
-        <header className="bg-green-700 m-[2em] border-2 border-green-700 rounded-[16px] sticky top-0 z-50">
+        <header className="bg-green-700 m-[2em] border-2 border-green-600 rounded-[16px] sticky top-0 z-50">
             <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
                     <a href="#" className="-m-1.5 p-1.5">
@@ -25,7 +51,13 @@ const Header = () => {
                     <Link href="/aboutus" className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">About Us</Link>
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-                    <a href="#" className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">Log in or Sign up <span aria-hidden="true">&rarr;</span></a>
+                    {
+                        !isLoggedIn ? (
+                            <Link href="/signup" onC className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">{"Log in or Sign up"} <span aria-hidden="true">&rarr;</span></Link>
+                        ) : (
+                                <a href="#" onClick={handleLogout} className="space-grotesk-bold text-sm font-semibold leading-6 text-gray-100">{"Log Out"} <span aria-hidden="true">&rarr;</span></a>
+                        )
+                    }
                 </div>
             </nav>
         </header>
